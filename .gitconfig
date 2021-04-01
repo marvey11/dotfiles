@@ -1,11 +1,26 @@
 [alias]
 
+    aa = add -A
+    ba = branch -a
+
+    # commit alternatives
+    ca = commit --amend -v
     ci = commit -av
+
     f = fetch
     l = log --pretty=oneline -n 20 --abbrev-commit
-    p = pull
+
+    # go to the master branch and either fetch or pull
+    mf = "!git switch master && git fetch"
+    mp = "!git switch master && git pull"
+
+    pl = pull
     rbi = "!f() { git rebase -i $1; }; f"
-    s = status -s
+
+    st = status -s
+    sv = status -v
+
+    sw = "!f() { git switch $1 2> /dev/null || git switch -c $1; }; f"
 
 [core]
 
