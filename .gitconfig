@@ -1,0 +1,20 @@
+[alias]
+
+    ci = commit -av
+    f = fetch
+    l = log --pretty=oneline -n 20 --abbrev-commit
+    p = pull
+    rbi = "!f() { git rebase -i $1; }; f"
+    s = status -s
+
+[core]
+
+    autocrlf = input
+
+[color]
+
+    ui = auto
+
+[init]
+
+    defaultBranch = master
