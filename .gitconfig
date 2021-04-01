@@ -4,8 +4,9 @@
     ba = branch -a
 
     # commit alternatives
-    ca = commit --amend -v
-    ci = commit -av
+    ca = commit -av
+    cam = commit --amend -v
+    ci = commit -v
 
     f = fetch
     l = log --pretty=oneline -n 20 --abbrev-commit
