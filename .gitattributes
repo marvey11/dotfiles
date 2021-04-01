@@ -1,2 +1,7 @@
-# Fix LF line endings for bash scripts
-*.sh text eol=lf
+*               text=auto
+
+# fix line endings for all bash scripts
+*.sh            text    eol=lf
+
+# fix line endings for individual file without a file name extension
+.bash_aliases   text    eol=lf
