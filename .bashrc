@@ -5,10 +5,13 @@ if [[ -f ${HOME}/.bash_aliases ]]; then
     source ${HOME}/.bash_aliases
 fi
 
+#
+# load all script files found in ~/.bash_util.d/
+#
 BASH_UTIL_DIR="${HOME}/.bash-util.d/"
 [[ -d ${BASH_UTIL_DIR} ]] &&
 {
-    for bu_file in $(find ${BASH_UTIL_DIR} -name "*.sh"); do
-        source ${bu_file}
+    for script in $(find ${BASH_UTIL_DIR} -name "*.sh"); do
+        source ${script}
     done
 }
