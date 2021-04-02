@@ -5,3 +5,4 @@
 
 # fix line endings for individual file without a file name extension
 .bash_aliases   text    eol=lf
+.bashrc         text    eol=lf
