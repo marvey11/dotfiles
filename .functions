@@ -1,0 +1,71 @@
+#
+# removes any trailing whitespace in a text file, in-place, and only overwrites the original if the sorting has
+# actually changed the contents
+#
+function remove-trailing-whitespace {
+
+    local file=${1}
+
+    [[ -z "${file}" ]] && {
+        echo "No path specified. Exiting..." >&2
+        return 1
+    }
+
+    [[ ! -e "${file}" ]] && {
+        echo "Specified path does not exist. Exiting..." >&2
+        return 2
+    }
+
+    [[ -d "${file}" ]] && {
+        echo "Specified path is a directory. Exiting..." >&2
+        return 3
+    }
+
+    local tmpfile=$(mktemp -t rtw-XXXXXXXXXX.tmp) || return 255
+
+    sed -e "s/\s\+$//g" "${file}" > "${tmpfile}"
+
+    # overwrite the original file only if the contents differ
+    cmp --silent "${file}" "${tmpfile}"
+    [[ $? -eq 0 ]] || cp "${tmpfile}" "${file}"
+
+    rm "${tmpfile}"
+
+    return 0
+
+}
+
+#
+# sorts the lines in a text file, in-place, and only overwrites the original if the sorting has actually changed the
+# contents
+#
+function sort-lines {
+    local file=${1}
+
+    [[ -z "${file}" ]] && {
+        echo "No path specified. Exiting..." >&2
+        return 1
+    }
+
+    [[ ! -e "${file}" ]] && {
+        echo "Specified path does not exist. Exiting..." >&2
+        return 2
+    }
+
+    [[ -d "${file}" ]] && {
+        echo "Specified path is a directory. Exiting..." >&2
+        return 3
+    }
+
+    local tmpfile=$(mktemp -t sl-XXXXXXXXXX.tmp) || return 255
+
+    sort "${file}" > "${tmpfile}"
+
+    # overwrite the original file only if the contents differ
+    cmp --silent "${file}" "${tmpfile}"
+    [[ $? -eq 0 ]] || cp "${tmpfile}" "${file}"
+
+    rm "${tmpfile}"
+
+    return 0
+}
