@@ -1,3 +1,8 @@
+#
+# Installs an addon script into the .bash-too.d directory in ${HOME}.
+#
+# Ties in directly with the infrastructure established in dotfiles' install script.
+#
 function Install-Addon {
     $target_dir = Join-Path -Path ~ -ChildPath ".bash-too.d"
 
