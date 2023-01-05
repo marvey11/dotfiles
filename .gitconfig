@@ -11,10 +11,6 @@
     f = fetch
     l = log --pretty=oneline -n 20 --abbrev-commit
 
-    # go to the master branch and either fetch or pull
-    mf = "!git switch master && git fetch"
-    mp = "!git switch master && git pull"
-
     pl = pull
     rbi = "!f() { git rebase -i $1; }; f"
 
