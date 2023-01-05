@@ -4,7 +4,7 @@
 #
 # Source in ~/.bashrc
 #
-# File any issue here: https://github.com/marvey11/codescape-utilities-bash/issues
+# File any issue here: https://github.com/marvey11/dotfiles/issues
 #
 # ------------------------------------------------------------------------------------------------
 #
