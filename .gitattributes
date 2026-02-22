@@ -5,7 +5,4 @@
 *.sh            text    eol=lf
 
 # fix line endings for individual file without a file name extension
-.bash_aliases   text    eol=lf
 .bashrc         text    eol=lf
-.exports        text    eol=lf
-.functions      text    eol=lf
