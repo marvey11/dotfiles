@@ -1,6 +1,6 @@
 #
-# removes any trailing whitespace in a text file, in-place, and only overwrites the original if the sorting has
-# actually changed the contents
+# removes any trailing whitespace in a text file, in-place, and only overwrites 
+# the original if the sorting has actually changed the contents
 #
 function remove-trailing-whitespace {
 
@@ -36,8 +36,8 @@ function remove-trailing-whitespace {
 }
 
 #
-# sorts the lines in a text file, in-place, and only overwrites the original if the sorting has actually changed the
-# contents
+# sorts the lines in a text file, in-place, and only overwrites the original if 
+# the sorting has actually changed the contents
 #
 function sort-lines {
     local file=${1}

@@ -35,18 +35,20 @@
 #
 # Clean the branches that have vanished on remote.
 #
-# New implementation (issue #2) is based on:
-# https://stackoverflow.com/questions/53503591/git-branch-status-via-plumbing-command?noredirect=1#comment93879166_53503591
+# (Using -d instead of -D to only delete branches that have been merged, for safety)
 #
-# (Using -d, though, instead of -D as I'd like to know first if there are merge issues)
-#
-function git-clean-branches()
-{
-	git fetch --prune || return 1
+git-clean-branches() {
+    # 1. Sync with remote and remove dead remote-tracking branches
+    git fetch --prune || return 1
 
-	for branch in $(git for-each-ref --format='%(if:equals=[gone])%(upstream:track)%(then)%(refname:short)%(end)' refs/heads); do
-		git branch -d $branch
-	done
+    # 2. Identify 'gone' branches, excluding the one we are currently on
+    local current_branch=$(git symbolic-ref --short HEAD)
+    local branches_to_delete=$(git for-each-ref --format='%(if:equals=[gone])%(upstream:track)%(then)%(refname:short)%(end)' refs/heads)
 
-	return 0
+    for branch in $branches_to_delete; do
+        if [ "$branch" != "$current_branch" ]; then
+            echo "Removing merged/gone branch: $branch"
+            git branch -d "$branch"
+        fi
+    done
 }
