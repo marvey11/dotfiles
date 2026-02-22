@@ -4,12 +4,14 @@
 
 [alias]
     # Short and sweet
-    st = status
-    co = checkout
     br = branch
+    co = checkout
+    cb = checkout -b
+    ci = commit
     cm = commit -m
-    ps = push
     pl = pull
+    ps = push
+    st = status
     
     # Prettier log view
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
