@@ -21,7 +21,3 @@ if [ -d "$BASH_DOT_DIR" ]; then
 fi
 
 unset BASH_DOT_DIR
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
