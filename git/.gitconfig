@@ -4,24 +4,50 @@
 
 [alias]
     # Short and sweet
-    br = branch
     co = checkout
-    cb = checkout -b
     ci = commit
     cm = commit -m
     pl = pull
     ps = push
+    psf = push --force-with-lease
     st = status
     sw = switch
+
+    # Quick fix for the absolute last commit
+    amend = commit --amend --no-edit
+
+    # Pretty branch view
+    br = "branch --sort=-committerdate --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]'"
+
+    # Create a fixup commit and immediately start an interactive rebase to 
+    # squash it into the target commit
+    fixup = "!f() { git commit --fixup=$1 && GIT_SEQUENCE_EDITOR=true git rebase -i --autosquash $1^; }; f"
+
+    # Create and push a new branch in one command
+    # Usage: git go <prefix> <branch-name>
+    go = "!f() { git fetch origin main && git checkout -b \"$1/$2\" origin/main && git push -u origin \"$1/$2\"; }; f"
+
+    # Delete local branches that have been removed from the remote
+    gone = "!f() { git fetch -p && git for-each-ref --format='%(if:equals=[gone])%(upstream:track)%(then)%(refname:short)%(end)' refs/heads | xargs -r git branch -d; }; f"
+
+    # Pretty log graph view
+    lg = log --graph --all --pretty=format:'%C(red)%h%C(reset) -%C(yellow)%d%C(reset) %s %C(green)(%cr) %C(bold blue)<%an>%C(reset)' --abbrev-commit
     
-    # Prettier log view
-    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    # Unstage files (the opposite of 'git add')
+    unstage = reset HEAD --
+
+    # Update the current branch with the latest changes from main
+    up = "!f() { git fetch origin main && git rebase origin/main; }; f"
 
 [init]
     defaultBranch = main
 
 [pull]
-    rebase = false
+    rebase = true
+
+[rebase]
+    autoSquash = true
+    autoStash = true
 
 [color]
     ui = auto
