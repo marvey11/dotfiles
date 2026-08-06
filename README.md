@@ -17,6 +17,12 @@ decide how to handle those. In my particular case, I moved them out of the way
 This was only tested on Ubuntu, specifically Ubuntu Server 24.04. Use at your
 own risk on any other distribution.
 
+## Upgrading
+
+After adding new files or modifiying any of the existing ones, run
+`stow -R bash script git` (or any subset of the targets). This will "restow",
+and thereby apply the changes.
+
 ## Additional Considerations
 
 To keep specific snippets from the original `.bashrc`, consider adding them to
