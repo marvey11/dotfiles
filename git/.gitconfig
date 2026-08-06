@@ -34,6 +34,7 @@
     lg = log --graph --all --pretty=format:'%C(red)%h%C(reset) -%C(yellow)%d%C(reset) %s %C(green)(%cr) %C(bold blue)<%an>%C(reset)' --abbrev-commit
     
     # Unstage files (the opposite of 'git add')
+    # Usage: git unstage <file1> <file2> ...
     unstage = reset HEAD --
 
     # Update the current branch with the latest changes from main
@@ -57,3 +58,5 @@
 
 [include]
     path = ~/.gitconfig.local
+[ai]
+	addressfamily = ipv4
