@@ -32,3 +32,14 @@ The `.gitconfig` file includes an additional `~/.gitconfig.local`. This was
 added to keep sensitive information like email addresses from being made
 public, e.g. in repositories like this. Just remove the `[include]` statement
 if that is not required.
+
+## Using `pre-commit` hooks
+
+I am using `pre-commit` together with `shellcheck`. `pre-commit` is available
+via `apt` on Ubuntu, but it seems to have a lot of additional dependencies.
+Instead, I chose to install it via `uv tool`, as I have `uv` available for
+Python projects already.
+
+```bash
+uv tool install pre-commit
+```
