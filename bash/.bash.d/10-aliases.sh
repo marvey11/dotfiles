@@ -1,5 +1,3 @@
-# shellcheck shell=bash
-
 alias ..='cd ..'
 alias ...='cd ../..'
 alias grep='grep --color=auto'

@@ -10,18 +10,18 @@ HISTFILESIZE=${HISTSIZE}
 BASH_DOT_DIR="${HOME}/.bash.d"
 
 # 3. Source all modular files in order
-if [ -d "$BASH_DOT_DIR" ]; then
+if [ -d "${BASH_DOT_DIR}" ]; then
     # Loop through all .sh files in the directory
-    for file in "$BASH_DOT_DIR"/*.sh; do
+    for file in "${BASH_DOT_DIR}"/*.sh; do
         # Ensure the file exists (handles empty directory case) and is readable
-        if [[ -f "$file" && "$file" == *.sh ]]; then
-            source "$file"
+        if [[ -f "${file}" && "${file}" == *.sh ]]; then
+            source "${file}"
         fi
     done
 fi
 
 unset BASH_DOT_DIR
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export NVM_DIR="${HOME}/.nvm"
+[ -s "${NVM_DIR}/nvm.sh" ] && \. "${NVM_DIR}/nvm.sh"  # This loads nvm
+[ -s "${NVM_DIR}/bash_completion" ] && \. "${NVM_DIR}/bash_completion"  # This loads nvm bash_completion

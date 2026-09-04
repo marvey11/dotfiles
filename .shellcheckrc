@@ -1,0 +1,13 @@
+# .shellcheckrc
+
+# Default shell dialect for scripts without a shebang (e.g. sourced dotfiles)
+shell=bash
+
+# Disable specific warnings globally across the repository
+# SC1090: Can't follow non-constant source.
+# SC1091: Not following sourced file (e.g. /etc/os-release or system paths)
+disable=SC1090,SC1091
+
+# Enable optional checks for stricter linting
+enable=check-unassigned-uppercase
+enable=require-variable-braces
