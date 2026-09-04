@@ -58,13 +58,13 @@ git-clean-branches() {
     local branches_to_delete
     branches_to_delete=$(git for-each-ref --format='%(if:equals=[gone])%(upstream:track)%(then)%(refname:short)%(end)' refs/heads)
 
-    for branch in $branches_to_delete; do
-        if [ "$branch" != "$current_branch" ]; then
-            if [ "$dry_run" = true ]; then
-                echo "[DRY RUN] Would remove: $branch"
+    for branch in ${branches_to_delete}; do
+        if [ "${branch}" != "${current_branch}" ]; then
+            if [ "${dry_run}" = true ]; then
+                echo "[DRY RUN] Would remove: ${branch}"
             else
-                echo "Removing: $branch"
-                git branch -d "$branch"
+                echo "Removing: ${branch}"
+                git branch -d "${branch}"
             fi
         fi
     done

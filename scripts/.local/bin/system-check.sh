@@ -27,15 +27,15 @@ if command -v docker > /dev/null; then
     echo -e "\n${GREEN}[ Docker Status ]${NC}"
     RUNNING=$(docker ps -q | wc -l)
     TOTAL=$(docker ps -a -q | wc -l)
-    echo "Containers: $RUNNING running / $TOTAL total"
-    if [ "$RUNNING" -lt "$TOTAL" ]; then
+    echo "Containers: ${RUNNING} running / ${TOTAL} total"
+    if [ "${RUNNING}" -lt "${TOTAL}" ]; then
         echo -e "${RED}Warning: Some containers are stopped!${NC}"
     fi
 fi
 
 # 5. Pending Updates
 echo -e "\n${GREEN}[ Updates ]${NC}"
-UPDATES=$(apt list --upgradable 2>/dev/null | grep -v "Listing" | wc -l)
-echo "$UPDATES packages can be updated."
+UPDATES=$(apt list --upgradable 2>/dev/null | grep -c -v "Listing")
+echo "${UPDATES} packages can be updated."
 
 echo -e "\n${YELLOW}----------------------------${NC}"

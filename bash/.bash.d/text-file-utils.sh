@@ -21,13 +21,16 @@ function remove-trailing-whitespace {
         return 3
     }
 
-    local tmpfile=$(mktemp -t rtw-XXXXXXXXXX.tmp) || return 255
+    local tmpfile
+    tmpfile=$(mktemp -t rtw-XXXXXXXXXX.tmp) || return 255
 
     sed -e "s/\s\+$//g" "${file}" > "${tmpfile}"
 
     # overwrite the original file only if the contents differ
-    cmp --silent "${file}" "${tmpfile}"
-    [[ $? -eq 0 ]] || cp "${tmpfile}" "${file}"
+    if ! cmp --silent "${file}" "${tmpfile}"
+    then
+        cp "${tmpfile}" "${file}"
+    fi
 
     rm "${tmpfile}"
 
@@ -57,13 +60,16 @@ function sort-lines {
         return 3
     }
 
-    local tmpfile=$(mktemp -t sl-XXXXXXXXXX.tmp) || return 255
+    local tmpfile
+    tmpfile=$(mktemp -t sl-XXXXXXXXXX.tmp) || return 255
 
     sort "${file}" > "${tmpfile}"
 
     # overwrite the original file only if the contents differ
-    cmp --silent "${file}" "${tmpfile}"
-    [[ $? -eq 0 ]] || cp "${tmpfile}" "${file}"
+    if ! cmp --silent "${file}" "${tmpfile}"
+    then
+        cp "${tmpfile}" "${file}"
+    fi
 
     rm "${tmpfile}"
 
