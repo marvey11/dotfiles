@@ -19,7 +19,7 @@
     # Pretty branch view
     br = "branch --sort=-committerdate --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]'"
 
-    # Create a fixup commit and immediately start an interactive rebase to 
+    # Create a fixup commit and immediately start an interactive rebase to
     # squash it into the target commit
     fixup = "!f() { git commit --fixup=$1 && GIT_SEQUENCE_EDITOR=true git rebase -i --autosquash $1^; }; f"
 
@@ -32,7 +32,7 @@
 
     # Pretty log graph view
     lg = log --graph --all --pretty=format:'%C(red)%h%C(reset) -%C(yellow)%d%C(reset) %s %C(green)(%cr) %C(bold blue)<%an>%C(reset)' --abbrev-commit
-    
+
     # Unstage files (the opposite of 'git add')
     # Usage: git unstage <file1> <file2> ...
     unstage = reset HEAD --
