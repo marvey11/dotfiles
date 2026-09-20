@@ -37,7 +37,7 @@
 #
 # Dry-run feature provided by Gemini.
 #
-# (Using -d instead of -D to only delete branches that have been merged, 
+# (Using -d instead of -D to only delete branches that have been merged,
 # for safety reasons.)
 #
 git-clean-branches() {
@@ -53,7 +53,7 @@ git-clean-branches() {
 
     local current_branch
     current_branch=$(git symbolic-ref --short HEAD 2>/dev/null)
-    
+
     # 2. Identify 'gone' branches using Git's internal formatting
     local branches_to_delete
     branches_to_delete=$(git for-each-ref --format='%(if:equals=[gone])%(upstream:track)%(then)%(refname:short)%(end)' refs/heads)
