@@ -12,3 +12,7 @@ alias ll='eza -l --group-directories-first --icons'
 # dotfiles command
 alias sys-check='system-check.sh'
 alias sys-update='sudo ~/.local/bin/system-update.sh'
+
+if command -v docker >/dev/null 2>&1; then
+    alias dive="docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock ghcr.io/wagoodman/dive:v0.13.1"
+fi
