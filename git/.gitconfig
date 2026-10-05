@@ -40,6 +40,9 @@
     # Update the current branch with the latest changes from main
     up = "!f() { git fetch origin main && git rebase origin/main; }; f"
 
+    # Update `main` without leaving the current feature branch
+    upmain = fetch origin main:main
+
 [init]
     defaultBranch = main
 
