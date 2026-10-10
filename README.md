@@ -40,6 +40,28 @@ dot-sync
 To keep specific snippets from the original `.bashrc`, consider adding them to
 `~/.bash.d/00-defaults.sh`.
 
+### Private environment variables
+
+Interactive Bash shells load `~/.config/dotfiles/env.sh` (or
+`$XDG_CONFIG_HOME/dotfiles/env.sh` when `XDG_CONFIG_HOME` is set). Create the
+file outside this repository and restrict access to your user:
+
+```bash
+mkdir -p "${XDG_CONFIG_HOME:-$HOME/.config}/dotfiles"
+chmod 700 "${XDG_CONFIG_HOME:-$HOME/.config}/dotfiles"
+touch "${XDG_CONFIG_HOME:-$HOME/.config}/dotfiles/env.sh"
+chmod 600 "${XDG_CONFIG_HOME:-$HOME/.config}/dotfiles/env.sh"
+```
+
+Add exported variables to the file, for example:
+
+```bash
+export GITHUB_TOKEN='your-token-here'
+```
+
+Start a new shell or source `~/.bashrc` to load changes. This file is outside
+the repository, so its contents are not included when you commit your dotfiles.
+
 The `.gitconfig` file includes an additional `~/.gitconfig.local`. This was
 added to keep sensitive information like email addresses from being made
 public, e.g. in repositories like this. Just remove the `[include]` statement
