@@ -11,6 +11,7 @@ alias ll='eza -l --group-directories-first --icons'
 
 # dotfiles command
 alias sys-check='system-check.sh'
+alias sys-maint='sudo ~/.local/bin/system-maintenance.sh'
 alias sys-update='sudo ~/.local/bin/system-update.sh'
 
 if command -v docker >/dev/null 2>&1; then
