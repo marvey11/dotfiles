@@ -11,13 +11,13 @@ echo -e "${YELLOW}--- Server Health Report ($(hostname)) ---${NC}"
 # -----------------------------------------------------------------------------
 # Disk Usage
 #
-# Focusses on root (`/`), data drives, and `/tmp`.
+# Focusses on root (`/`), data drives (`/mnt/*`), and `/tmp`.
 #
 # Highlights entries above certain thresholds.
 # -----------------------------------------------------------------------------
 
 echo -e "\n${GREEN}[ Disk Usage ]${NC}"
-df -h | grep -E '^/dev/| /$| /tmp$' | awk -v YELLOW="${YELLOW}" -v RED="${RED}" -v NC="${NC}" '{
+df -h | grep -E '^/dev/.* /$| /mnt/[a-z]+$| /tmp$' | awk -v YELLOW="${YELLOW}" -v RED="${RED}" -v NC="${NC}" '{
     usage = $5 + 0
     msg = $5 " usage on " $6
     if (usage >= 90) {
